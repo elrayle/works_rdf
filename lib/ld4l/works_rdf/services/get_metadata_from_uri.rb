@@ -26,16 +26,9 @@ module LD4L
         # TODO: Could reach out to OCLC and get more info
         the_metadata.set_type_to_book
         the_metadata.title            = the_work.title.first
-        the_metadata.author           = ""
-        the_metadata.pub_date         = ""
         the_metadata.pub_info         = "#{the_work.place_of_publication.first} : #{the_work.publisher.first.label.first}"
-        the_metadata.language         = ""
-        the_metadata.edition          = ""
-        the_metadata.set_source_to_Cornell_VIVO
-        the_metadata.local_id         = ""
+        the_metadata.set_source_to_cornell_vivo
         the_metadata.oclc_id          = the_work.oclcnum.first
-        the_metadata.local_location   = ""
-        the_metadata.local_callnumber = ""
         the_metadata
       end
 
@@ -47,11 +40,8 @@ module LD4L
         the_metadata.pub_info         = "#{the_work.place_of_publication.first} : #{the_work.publisher.first}, #{the_work.date_published.first}"
         the_metadata.language         = the_work.in_language.first
         the_metadata.edition          = the_work.book_edition.first
-        the_metadata.set_source_to_OCLC
-        the_metadata.local_id         = ""
+        the_metadata.set_source_to_oclc
         the_metadata.oclc_id          = the_work.oclcnum.first
-        the_metadata.local_location   = ""
-        the_metadata.local_callnumber = ""
         the_metadata
       end
 

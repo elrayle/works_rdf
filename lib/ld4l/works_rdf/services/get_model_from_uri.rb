@@ -19,6 +19,7 @@ module LD4L
           curl.headers['Api-Version'] = '2.2'
           curl.follow_location = true
           curl.max_redirects = 1
+          curl.connect_timeout = 30
           curl.useragent = "curb"
           curl.on_redirect do |easy|
             # puts http.header_str
