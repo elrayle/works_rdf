@@ -40,6 +40,7 @@ module LD4L
 
     # autoload model classes
     autoload :GenericWork,           'ld4l/works_rdf/models/generic_work'
+    autoload :WorkMetadata,          'ld4l/works_rdf/models/work_metadata'
 
     autoload :VivoBook,              'ld4l/works_rdf/models/books/vivo_book'
     autoload :SchemaBook,            'ld4l/works_rdf/models/books/schema_book'

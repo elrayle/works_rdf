@@ -6,8 +6,8 @@ describe 'LD4L::WorksRDF' do
     describe "base_uri" do
       context "when base_uri is not configured" do
         before do
-          class DummyWork < LD4L::WorksRDF::BiboBook
-            configure :type => RDFVocabularies::BIBO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
+          class DummyWork < LD4L::WorksRDF::VivoBook
+            configure :type => RDFVocabularies::VIVO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
           end
         end
         after do
@@ -23,8 +23,8 @@ describe 'LD4L::WorksRDF' do
           LD4L::WorksRDF.configure do |config|
             config.base_uri = "http://localhost/test_slash/"
           end
-          class DummyWork < LD4L::WorksRDF::BiboBook
-            configure :type => RDFVocabularies::BIBO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
+          class DummyWork < LD4L::WorksRDF::VivoBook
+            configure :type => RDFVocabularies::VIVO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
           end
         end
         after do
@@ -42,8 +42,8 @@ describe 'LD4L::WorksRDF' do
           LD4L::WorksRDF.configure do |config|
             config.base_uri = "http://localhost/test_no_slash"
           end
-          class DummyWork < LD4L::WorksRDF::BiboBook
-            configure :type => RDFVocabularies::BIBO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
+          class DummyWork < LD4L::WorksRDF::VivoBook
+            configure :type => RDFVocabularies::VIVO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
           end
         end
         after do
@@ -85,8 +85,8 @@ describe 'LD4L::WorksRDF' do
     describe "localname_minter" do
       context "when minter is nil" do
         before do
-          class DummyWork < LD4L::WorksRDF::BiboBook
-            configure :type => RDFVocabularies::BIBO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
+          class DummyWork < LD4L::WorksRDF::VivoBook
+            configure :type => RDFVocabularies::VIVO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
           end
         end
         after do
@@ -94,7 +94,7 @@ describe 'LD4L::WorksRDF' do
         end
         it "should use default minter in minter gem" do
           localname = ActiveTriples::LocalName::Minter.generate_local_name(
-                  LD4L::WorksRDF::BiboBook, 10, {:prefix=>'default_'},
+                  LD4L::WorksRDF::VivoBook, 10, {:prefix=>'default_'},
                   LD4L::WorksRDF.configuration.localname_minter )
           expect(localname).to be_kind_of String
           expect(localname.size).to eq 44
@@ -107,8 +107,8 @@ describe 'LD4L::WorksRDF' do
           LD4L::WorksRDF.configure do |config|
             config.localname_minter = lambda { |prefix=""| prefix+'_configured_'+SecureRandom.uuid }
           end
-          class DummyWork < LD4L::WorksRDF::BiboBook
-            configure :type => RDFVocabularies::BIBO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
+          class DummyWork < LD4L::WorksRDF::VivoBook
+            configure :type => RDFVocabularies::VIVO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
           end
         end
         after do
@@ -118,8 +118,8 @@ describe 'LD4L::WorksRDF' do
 
         it "should generate an Person URI using the configured localname_minter" do
           localname = ActiveTriples::LocalName::Minter.generate_local_name(
-              LD4L::WorksRDF::BiboBook, 10,
-              LD4L::WorksRDF::BiboBook.localname_prefix,
+              LD4L::WorksRDF::VivoBook, 10,
+              LD4L::WorksRDF::VivoBook.localname_prefix,
               &LD4L::WorksRDF.configuration.localname_minter )
           expect(localname).to be_kind_of String
           expect(localname.size).to eq 49

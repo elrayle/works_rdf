@@ -8,9 +8,9 @@ module LD4L
       configure :type => RDFVocabularies::VIVO.Authorship,
                 :base_uri => LD4L::WorksRDF.configuration.base_uri
 
-      property :familyName,   :predicate => RDF::SCHEMA.familyName
-      property :givenName,    :predicate => RDF::SCHEMA.givenName
-      property :fullName,     :predicate => RDF::SCHEMA.name
+      property :family_name,   :predicate => RDF::SCHEMA.familyName
+      property :given_name,    :predicate => RDF::SCHEMA.givenName
+      property :full_name,     :predicate => RDF::SCHEMA.name
     end
   end
 end

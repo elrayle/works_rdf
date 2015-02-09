@@ -8,7 +8,7 @@ describe "LD4L::WorksRDF" do
         config.base_uri = "http://localhost/test/"
         config.localname_minter = lambda { |prefix=""| prefix+'_configured_'+SecureRandom.uuid }
       end
-      class DummyWork < LD4L::WorksRDF::BiboBook
+      class DummyWork < LD4L::WorksRDF::VivoBook
         configure :type => RDFVocabularies::BIBO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
       end
     end
@@ -23,12 +23,12 @@ describe "LD4L::WorksRDF" do
       expect(config.localname_minter).to be_kind_of Proc
     end
 
-    it "should use configured value in BiboBook sub-class" do
+    it "should use configured value in VivoBook sub-class" do
       p = DummyWork.new('1')
       expect(p.rdf_subject.to_s).to eq "http://localhost/test/1"
 
       p = DummyWork.new(ActiveTriples::LocalName::Minter.generate_local_name(
-                                   LD4L::WorksRDF::BiboBook, 10, 'foo',
+                                   LD4L::WorksRDF::VivoBook, 10, 'foo',
                                    &LD4L::WorksRDF.configuration.localname_minter ))
       expect(p.rdf_subject.to_s.size).to eq 73
       expect(p.rdf_subject.to_s).to match /http:\/\/localhost\/test\/foo_configured_[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}/

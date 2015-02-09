@@ -9,17 +9,17 @@ module LD4L
                 :base_uri => LD4L::WorksRDF.configuration.base_uri,
                 :repository => :default
 
-      property :title,               :predicate => RDF::SCHEMA.name
-      property :creator,             :predicate => RDF::SCHEMA.creator,       :class_name => LD4L::WorksRDF::SchemaPerson           # author
-      property :bookEdition,         :predicate => RDF::SCHEMA.bookEdition
-      property :copyrightYear,       :predicate => RDF::SCHEMA.copyrightYear
-      property :datePublished,       :predicate => RDF::SCHEMA.datePublished
-      property :description,         :predicate => RDF::SCHEMA.description
-      property :genre,               :predicate => RDF::SCHEMA.genre
-      property :inLanguage,          :predicate => RDF::SCHEMA.inLanguage
-      property :publisher,           :predicate => RDF::SCHEMA.publisher
-      property :oclcnum,             :predicate => RDFVocabularies::LIBRARY.oclcnum
-      property :placeOfPublication,  :predicate => RDFVocabularies::LIBRARY.placeOfPublication
+      property :title,                :predicate => RDF::SCHEMA.name
+      property :creator,              :predicate => RDF::SCHEMA.creator,       :class_name => LD4L::WorksRDF::SchemaPerson           # author
+      property :book_edition,         :predicate => RDF::SCHEMA.bookEdition
+      property :copyright_year,       :predicate => RDF::SCHEMA.copyrightYear
+      property :date_published,       :predicate => RDF::SCHEMA.datePublished
+      property :description,          :predicate => RDF::SCHEMA.description
+      property :genre,                :predicate => RDF::SCHEMA.genre
+      property :in_language,          :predicate => RDF::SCHEMA.inLanguage
+      property :publisher,            :predicate => RDF::SCHEMA.publisher
+      property :oclcnum,              :predicate => RDFVocabularies::LIBRARY.oclcnum
+      property :place_of_publication, :predicate => RDFVocabularies::LIBRARY.placeOfPublication
     end
   end
 end

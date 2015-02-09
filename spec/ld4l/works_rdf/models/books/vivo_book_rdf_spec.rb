@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe 'LD4L::WorksRDF::BiboBook' do
+describe 'LD4L::WorksRDF::VivoBook' do
   # it_behaves_like 'an ActiveTriple::Resource'
 
-  subject { LD4L::WorksRDF::BiboBook.new }  # new virtual collection without a subject
+  subject { LD4L::WorksRDF::VivoBook.new }  # new virtual collection without a subject
 
   describe 'rdf_subject' do
     it "should be a blank node if we haven't set it" do
@@ -17,7 +17,7 @@ describe 'LD4L::WorksRDF::BiboBook' do
 
     it "should append to base URI when setting to non-URI subject" do
       subject.set_subject! '123'
-      expect(subject.rdf_subject).to eq RDF::URI("#{LD4L::WorksRDF::BiboBook.base_uri}123")
+      expect(subject.rdf_subject).to eq RDF::URI("#{LD4L::WorksRDF::VivoBook.base_uri}123")
     end
 
     describe 'when changing subject' do
@@ -65,7 +65,7 @@ describe 'LD4L::WorksRDF::BiboBook' do
 
   describe '#localname_prefix' do
     it "should return default prefix" do
-      prefix = LD4L::WorksRDF::BiboBook.localname_prefix
+      prefix = LD4L::WorksRDF::VivoBook.localname_prefix
       expect(prefix).to eq "w"
     end
   end
@@ -105,7 +105,7 @@ describe 'LD4L::WorksRDF::BiboBook' do
     context "when the repository is set" do
       context "and the item is not a blank node" do
 
-        subject {LD4L::WorksRDF::BiboBook.new("123")}
+        subject {LD4L::WorksRDF::VivoBook.new("123")}
 
         before do
           # Create inmemory repository
@@ -128,7 +128,7 @@ describe 'LD4L::WorksRDF::BiboBook' do
       subject << RDF::Statement(RDF::DC.LicenseDocument, RDF::DC.title, 'LICENSE')
     end
 
-    subject { LD4L::WorksRDF::BiboBook.new('456')}
+    subject { LD4L::WorksRDF::VivoBook.new('456')}
 
     it 'should return true' do
       expect(subject.destroy!).to be true
@@ -143,7 +143,7 @@ describe 'LD4L::WorksRDF::BiboBook' do
 
   describe '#type' do
     it 'should return the type configured on the parent class' do
-      expect(subject.type).to eq [LD4L::WorksRDF::BiboBook.type]
+      expect(subject.type).to eq [LD4L::WorksRDF::VivoBook.type]
     end
 
     it 'should set the type' do
@@ -159,14 +159,14 @@ describe 'LD4L::WorksRDF::BiboBook' do
   end
 
   describe '#rdf_label' do
-    subject {LD4L::WorksRDF::BiboBook.new("123")}
+    subject {LD4L::WorksRDF::VivoBook.new("123")}
 
     it 'should return an array of label values' do
       expect(subject.rdf_label).to be_kind_of Array
     end
 
     it 'should return the default label as URI when no title property exists' do
-      expect(subject.rdf_label).to eq ["#{LD4L::WorksRDF::BiboBook.base_uri}123"]
+      expect(subject.rdf_label).to eq ["#{LD4L::WorksRDF::VivoBook.base_uri}123"]
     end
 
     it 'should prioritize configured label values' do
@@ -203,10 +203,10 @@ describe 'LD4L::WorksRDF::BiboBook' do
         property :creator, :predicate => RDF::DC.creator, :class_name => 'DummyPerson'
       end
 
-      LD4L::WorksRDF::BiboBook.property :item, :predicate => RDF::DC.relation, :class_name => DummyDocument
+      LD4L::WorksRDF::VivoBook.property :item, :predicate => RDF::DC.relation, :class_name => DummyDocument
     end
 
-    subject { LD4L::WorksRDF::BiboBook.new }
+    subject { LD4L::WorksRDF::VivoBook.new }
 
     let (:document1) do
       d = DummyDocument.new

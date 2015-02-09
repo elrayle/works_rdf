@@ -1,4 +1,3 @@
-require 'pry'
 module LD4L
   module WorksRDF
     class GetModelFromURI
@@ -50,23 +49,16 @@ module LD4L
       end
 
       def self.get_generic_work( repo, uri )
-        generic_work = LD4L::WorksRDF::GenericWork.new(uri, :data => repo)
-        puts('After getting generic_work')
-        generic_work
+        LD4L::WorksRDF::GenericWork.new(uri, :data => repo)
       end
 
       def self.get_vivo_book( repo, uri )
-        vivo_work = LD4L::WorksRDF::VivoBook.new(uri, :data => repo)
-        puts('After getting bibo_work')
-        vivo_work
+        LD4L::WorksRDF::VivoBook.new(uri, :data => repo)
       end
 
       def self.get_schema_book( repo, uri )
-        schema_work = LD4L::WorksRDF::SchemaBook.new(uri, :data => repo)
-        puts('After getting schema_work')
-        schema_work
+        LD4L::WorksRDF::SchemaBook.new(uri, :data => repo)
       end
-
 
     end
   end
