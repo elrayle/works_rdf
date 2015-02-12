@@ -9,27 +9,21 @@ module LD4L
       #
       # @returns an instance of one of the generic work models
       def self.call( uri )
-        # uri = RDF::URI(uri) if uri.kind_of?(String)
+        uri = uri.to_s if uri.kind_of?(RDF::URI)
 
-        # curl -D - -H "Accept: application/json" http://vivo.cornell.edu/individual/individual24416/individual24416.jsonld
-        # result = Kernel.system "curl -D - -H \"Accept: text/turtle\" #{uri}"
+        # curl -L -D - -H "Accept: text/turtle" http://vivo.cornell.edu/individual/n56611
         http = Curl.get(uri) do |curl|
           curl.headers['Accept'] = 'text/turtle'
           curl.headers['Content-Type'] = 'text/turtle'
           curl.headers['Api-Version'] = '2.2'
           curl.follow_location = true
-          curl.max_redirects = 1
+          curl.max_redirects = 3
           curl.connect_timeout = 30
           curl.useragent = "curb"
-          curl.on_redirect do |easy|
-            # puts http.header_str
-            # easy.headers['Accept'] = 'text/ttl'
-            # easy.headers['Content-Type'] = 'text/ttl'
-            # easy.headers['Api-Version'] = '2.2'
-            puts "set header again for redirect"
-          end
         end
         result = http.body_str
+        header = http.header_str
+
         work_graph = RDF::Graph.new.from_ttl result
         repo_name = SecureRandom.uuid.to_sym
         # r = RDF::Repository.new
@@ -64,4 +58,5 @@ module LD4L
     end
   end
 end
+
 
