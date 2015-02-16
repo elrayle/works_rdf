@@ -23,12 +23,13 @@ module LD4L
       end
 
       def self.populate_with_vivo_book( the_metadata, the_work )
-        # TODO: Could reach out to OCLC and get more info
+        # TODO: Could reach out to OCLC and get more info OR could make multiple calls to VIVO to get more info
         the_metadata.set_type_to_book
         the_metadata.title            = the_work.title.first
         the_metadata.pub_info         = "#{the_work.place_of_publication.first} : #{the_work.publisher.first.label.first}"
-        the_metadata.set_source_to_cornell_vivo
         the_metadata.oclc_id          = the_work.oclcnum.first
+        the_metadata.source           = "VIVO"
+        the_metadata.set_source_to_cornell_vivo
         the_metadata
       end
 
@@ -40,8 +41,9 @@ module LD4L
         the_metadata.pub_info         = "#{the_work.place_of_publication.first} : #{the_work.publisher.first}, #{the_work.date_published.first}"
         the_metadata.language         = the_work.in_language.first
         the_metadata.edition          = the_work.book_edition.first
-        the_metadata.set_source_to_oclc
         the_metadata.oclc_id          = the_work.oclcnum.first
+        the_metadata.source           = "OCLC Worldcat"
+        the_metadata.set_source_to_oclc
         the_metadata
       end
 

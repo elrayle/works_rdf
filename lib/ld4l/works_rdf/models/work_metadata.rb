@@ -5,34 +5,44 @@ module LD4L
       attr_reader   :work_type       # valid values:  :UNKNOWN, :BOOK, :VIDEO, :MUSIC
       attr_reader   :rdf_types
       attr_reader   :model
+      attr_accessor :uri
       attr_accessor :title
+      attr_accessor :subtitle
       attr_accessor :author
       attr_accessor :pub_date
       attr_accessor :pub_info
       attr_accessor :language
       attr_accessor :edition
       attr_accessor :oclc_id
-      attr_reader   :source          # valid values:  :UNKNOWN, :OCLC, :CORNELL_VIVO, :CORNELL_LIBRARY, :STANFORD_LIBRARY
+      attr_reader   :source_id       # valid values:  :UNKNOWN, :OCLC, :CORNELL_VIVO, :CORNELL_LIBRARY, :STANFORD_LIBRARY
+      attr_accessor :source
       attr_accessor :local_id
       attr_accessor :local_location
       attr_accessor :local_callnumber
       # attr_accessor :availability  # TODO: for Cornell only???
+      attr_accessor :error
+      attr_accessor :error_message
 
       def initialize( the_work )
         @work_type        = :UNKNOWN
         @rdf_types        = ""
+        uri               = ""
         @model            = ""
         @title            = ""
+        @subtitle         = ""
         @author           = ""
         @pub_date         = ""
         @pub_info         = ""
         @language         = ""
         @edition          = ""
         @oclc_id          = ""
-        @source           = :UNKNOWN
+        @source_id        = :UNKNOWN
+        @source           = ""
         @local_id         = ""
         @local_location   = ""
         @local_callnumber = ""
+        @error            = false
+        @error_message    = ""
         unless the_work.nil?
           @model = the_work
           @rdf_types = []
@@ -67,37 +77,44 @@ module LD4L
       end
 
       def set_source_to_cornell_vivo
-        @source = :CORNELL_VIVO
+        @source_id = :CORNELL_VIVO
       end
       def is_cornell_vivo?
-        return true if @source == :CORNELL_VIVO
+        return true if @source_id == :CORNELL_VIVO
         false
       end
 
       def set_source_to_oclc
-        @source = :OCLC
+        @source_id = :OCLC
       end
       def is_oclc?
-        return true if @source == :OCLC
+        return true if @source_id == :OCLC
         false
       end
 
       def set_source_to_cornell_library
-        @source = :CORNELL_LIBRARY
+        @source_id = :CORNELL_LIBRARY
       end
       def is_cornell_library?
-        return true if @source == :CORNELL_LIBRARY
+        return true if @source_id == :CORNELL_LIBRARY
         false
       end
 
       def set_source_to_stanford_library
-        @source = :STANFORD_LIBRARY
+        @source_id = :STANFORD_LIBRARY
       end
       def is_stanford_library?
-        return true if @source == :STANFORD_LIBRARY
+        return true if @source_id == :STANFORD_LIBRARY
         false
       end
 
+      def set_source_to_harvard_library
+        @source_id = :HARVARD_LIBRARY
+      end
+      def is_harvard_library?
+        return true if @source_id == :HARVARD_LIBRARY
+        false
+      end
     end
   end
 end
