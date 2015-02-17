@@ -20,7 +20,8 @@ module LD4L
         metadata.subtitle         = instance.title.first.subtitle.first    if instance.title && instance.title.first && instance.title.first.subtitle
         metadata.title = "#{metadata.title} : #{metadata.subtitle}"        if metadata.subtitle && metadata.subtitle.size > 0
         metadata.title            = instance.title_statement.first         if instance.title_statement && instance.title_statement.first
-        metadata.author           = work.creator.first.label.first
+        metadata.author           = work.contributor.first.label.first     if work.contributor && work.contributor.first && work.contributor.first.label
+        metadata.author           = work.creator.first.label.first         if work.creator && work.creator.first && work.creator.first.label
         metadata.pub_date         = instance.publication.first.provider_date.first
         metadata.pub_info         = instance.provider_statement.first
         # metadata.language         = model.in_language.first

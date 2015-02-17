@@ -8,7 +8,8 @@ module LD4L
       configure :type => RDFVocabularies::BF.Work,
                 :base_uri => LD4L::WorksRDF.configuration.base_uri
 
-      property :creator,    :predicate => RDFVocabularies::BF.creator,    :class_name => LD4L::WorksRDF::BibframePerson
+      property :creator,      :predicate => RDFVocabularies::BF.creator,      :class_name => LD4L::WorksRDF::BibframePerson
+      property :contributor,  :predicate => RDFVocabularies::BF.contributor,  :class_name => LD4L::WorksRDF::BibframePerson
     end
   end
 end
