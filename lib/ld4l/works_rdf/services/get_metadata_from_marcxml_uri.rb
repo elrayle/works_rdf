@@ -36,7 +36,7 @@ puts("*** Beginning Processing of #{uri}")
         models     = LD4L::WorksRDF::PopulateBibframeModelsFromRepository.call(bibframe_work_uri,repository)   if repository
         metadata   = LD4L::WorksRDF::SetErrorInMetadata.call(uri,'ERROR: Unable to populate models from repository') unless models
 
-        metadata   = LD4L::WorksRDF::GetMetadataFromBibframeModels.call(models)   if models
+        metadata   = LD4L::WorksRDF::GetMetadataFromBibframeModels.call(uri, models)   if models
 puts("--- Completed Processing of #{uri}")
         metadata
 

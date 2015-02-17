@@ -16,7 +16,7 @@ module LD4L
         graph      = LD4L::WorksRDF::PopulateGraphFromTurtle.call(turtle)
         repository = LD4L::WorksRDF::PopulateRepositoryFromGraph.call(graph)
         model      = LD4L::WorksRDF::PopulateVivoModelFromRepository.call(uri,repository)
-        metadata   = LD4L::WorksRDF::GetMetadataFromVivoModel.call(model)
+        metadata   = LD4L::WorksRDF::GetMetadataFromVivoModel.call(uri,model)
         metadata
 
       end
