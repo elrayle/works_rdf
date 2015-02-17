@@ -22,7 +22,7 @@ module LD4L
         metadata
       end
 
-      def self.populate_with_schema_book( models )
+      def self.populate_with_bibframe_book( models )
         work     = models[:work]
         instance = models[:instance]
 
