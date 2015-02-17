@@ -8,7 +8,7 @@ module LD4L
       # @param [String, RDF::URI] uri for the work
       #
       # @returns an instance of LD4L::WorksRDF::WorkMetadata populated with display metadata for the work located at the URI
-      def self.call( uri )
+      def self.call( uri, localname_prefix="" )
         raise ArgumentError, 'uri argument must be a uri string or an instance of RDF::URI'  unless
             uri.kind_of?(String) && uri.size > 0 || uri.kind_of?(RDF::URI)
 
@@ -17,7 +17,7 @@ module LD4L
 
         document_id = URI.parse(uri).path.split('/').last
 
-        bibframe_work_uri = "#{baseuri}#{document_id}"
+        bibframe_work_uri = "#{baseuri}#{localname_prefix}#{document_id}"
 
         marcxml    = LD4L::WorksRDF::GetMarcxmlFromURI.call(uri)
         metadata   = LD4L::WorksRDF::SetErrorInMetadata.call(uri,'ERROR: Unable to retrieve MARCXML from URI')      unless marcxml && marcxml.size > 0

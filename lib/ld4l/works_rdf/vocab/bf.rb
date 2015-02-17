@@ -21,6 +21,7 @@ module RDFVocabularies
     property :providerDate
     property :providerName
     property :providerPlace
+    property :titleStatement
     property :titleValue
     property :subtitle
     property :creator

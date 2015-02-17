@@ -10,6 +10,7 @@ module LD4L
 
       property :instance_of,          :predicate => RDFVocabularies::BF.instanceOf,     :class_name => LD4L::WorksRDF::BibframeWork
       property :title,                :predicate => RDFVocabularies::BF.instanceTitle,  :class_name => LD4L::WorksRDF::BibframeTitle
+      property :title_statement,      :predicate => RDFVocabularies::BF.titleStatement
       property :system_number,        :predicate => RDFVocabularies::BF.systemNumber,   :class_name => LD4L::WorksRDF::BibframeIdentifier    # has OCLC URI in one of these
       property :publication,          :predicate => RDFVocabularies::BF.publication,    :class_name => LD4L::WorksRDF::BibframeProvider
       property :provider_statement,   :predicate => RDFVocabularies::BF.providerStatement

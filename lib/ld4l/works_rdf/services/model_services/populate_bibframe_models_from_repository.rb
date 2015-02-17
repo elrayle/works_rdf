@@ -17,8 +17,6 @@ module LD4L
 
         bibframe_work_uri = RDF::URI(bibframe_work_uri) unless bibframe_work_uri.kind_of?(RDF::URI)
 
-
-
         # TODO: Move to common place because this code is repeated in each model_from_repository file
         # # Get work as a generic work
         # work = LD4L::WorksRDF::GenericWork.new(uri, :data => repository)
