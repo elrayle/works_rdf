@@ -18,8 +18,6 @@ module LD4L
       property :genre,                :predicate => RDF::SCHEMA.genre
       property :in_language,          :predicate => RDF::SCHEMA.inLanguage
       property :publisher,            :predicate => RDF::SCHEMA.publisher
-      property :oclcnum,              :predicate => RDFVocabularies::LIBRARY.oclcnum
-      property :place_of_publication, :predicate => RDFVocabularies::LIBRARY.placeOfPublication
     end
   end
 end

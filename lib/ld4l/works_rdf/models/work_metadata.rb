@@ -76,6 +76,14 @@ module LD4L
         false
       end
 
+      def set_source_to_unknown
+        @source_id = :UNKNOWN
+      end
+      def is_source_unknown?
+        return true if @source_id == :UNKNOWN
+        false
+      end
+
       def set_source_to_cornell_vivo
         @source_id = :CORNELL_VIVO
       end

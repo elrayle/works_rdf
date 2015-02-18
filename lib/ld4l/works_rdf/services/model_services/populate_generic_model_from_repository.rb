@@ -1,6 +1,6 @@
 module LD4L
   module WorksRDF
-    class PopulateOclcModelFromRepository
+    class PopulateGenericModelFromRepository
 
       ##
       # Create a OCLC model and populate it with metadata from the repository.
@@ -19,7 +19,10 @@ module LD4L
         end
 
         # TODO: Need to support multiple types (e.g. book, music, video).  Currently only supporting books.
-        work = LD4L::WorksRDF::OclcSchemaBook.new(uri, :data => repository)  if types.include? RDF::SCHEMA.Book.to_s
+        work = LD4L::WorksRDF::BiboBook.new(uri, :data => repository)      if types.include? RDFVocabularies::BIBO.Book.to_s
+        work = LD4L::WorksRDF::BiboDocument.new(uri, :data => repository)  if types.include? RDFVocabularies::BIBO.Document.to_s
+        work = LD4L::WorksRDF::PopulateBibframeModelsFromRepository.call(uri,repository)  if types.include?(RDFVocabularies::BF.Work.to_s) || types.include?(RDFVocabularies::BF.Instance.to_s)
+        work = LD4L::WorksRDF::SchemaBook.new(uri, :data => repository)    if types.include? RDF::SCHEMA.Book.to_s
         work
       end
     end

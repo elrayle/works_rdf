@@ -24,7 +24,11 @@ module LD4L
           curl.useragent = "curb"
         end
         header = http.header_str
+        response_content_type = LD4L::WorksRDF::ResponseHeader.get_content_type(header)
+        raise EncodingError, "uri returned results of type '#{response_content_type}' instead of expected 'text/turtle'" unless response_content_type == 'text/turtle'
+
         result = http.body_str
+        result
       end
     end
   end

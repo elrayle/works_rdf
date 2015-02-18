@@ -6,8 +6,7 @@ module LD4L
       @localname_prefix="w"
 
       configure :base_uri => LD4L::WorksRDF.configuration.base_uri,
-                :repository => :default,
-                :type => RDFVocabularies::BIBO.Book
+                :repository => :default
 
     end
   end
