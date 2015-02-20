@@ -12,8 +12,6 @@ module LD4L
         raise ArgumentError, 'uri argument must be a uri string or an instance of RDF::URI'  unless
             uri.kind_of?(String) && uri.size > 0 || uri.kind_of?(RDF::URI)
 
-puts("*** Beginning Generic Processing of #{uri}")
-
         begin
           turtle     = LD4L::WorksRDF::GetTurtleFromURI.call(uri)
           graph      = LD4L::WorksRDF::PopulateGraphFromTurtle.call(turtle)
@@ -34,7 +32,6 @@ puts("*** Beginning Generic Processing of #{uri}")
         metadata   = LD4L::WorksRDF::SetErrorInMetadata.call(uri,'ERROR: Unable to populate models from repository') unless model
 
         metadata   = LD4L::WorksRDF::GetMetadataFromGenericModel.call(uri,model) if model
-puts("--- Completed Processing of #{uri}")
         metadata
 
       end

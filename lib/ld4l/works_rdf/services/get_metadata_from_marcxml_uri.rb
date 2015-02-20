@@ -12,8 +12,6 @@ module LD4L
         raise ArgumentError, 'uri argument must be a uri string or an instance of RDF::URI'  unless
             uri.kind_of?(String) && uri.size > 0 || uri.kind_of?(RDF::URI)
 
-puts("*** Beginning Processing of #{uri}")
-
         baseuri = LD4L::WorksRDF.configuration.base_uri
         baseuri = "#{baseuri}/" unless baseuri.end_with?("/")
 
@@ -37,7 +35,6 @@ puts("*** Beginning Processing of #{uri}")
         metadata   = LD4L::WorksRDF::SetErrorInMetadata.call(uri,'ERROR: Unable to populate models from repository') unless models
 
         metadata   = LD4L::WorksRDF::GetMetadataFromBibframeModels.call(uri, models)   if models
-puts("--- Completed Processing of #{uri}")
         metadata
 
       end
