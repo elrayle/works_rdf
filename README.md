@@ -36,12 +36,33 @@ Or install it yourself as:
 
 ## Usage
 
+**Caveat:** This rails engine is part of the LD4L Project and is being used in that context.  There is no guarantee 
+that the code will work in a usable way outside of its use in LD4L Use Cases.
+
+
 ### Examples
 
-TBA
+If the ontology is unknown, you can try all known methods by calling the generic metadata extraction service.
+```
+item_metadata = LD4L::WorksRDF::AttemptGenericMetadataExtraction.call(uri)
+```
+
+If the URI is known to return marcxml, use the following service.
+```
+item_metadata = LD4L::WorksRDF::GetMetadataFromMarcxml.call(uri)
+```
+
+If the URI is known to return schema.org ontology as interpreted by oclc, use the following service.
+```
+item_metadata = LD4L::WorksRDF::GetMetadataFromOclcURI.call(uri)
+```
+
+If the URI is known to return bibo ontology as interpreted by vivo, use the following service.
+```
+item_metadata = LD4L::WorksRDF::GetMetadataFromVivoURI.call(uri)
+```
 
 ### Configuration
-
 
 ####Example configuration and usage for base_uri and default localname_minter
 ```
@@ -93,6 +114,41 @@ Example triples created for a person with configured base_uri and configured min
 ```
 <http://example.org/w_configured_6498ba05-8b21-4e8c-b9d4-a6d5d2180966> a <http://schema.org/schema:Book> .
 ```
+
+### Models
+
+The LD4L::WorksRDF gem provides model definitions using the 
+[ActiveTriples](https://github.com/ActiveTriples/ActiveTriples) framework extension of 
+[ruby-rdf/rdf](https://github.com/ruby-rdf/rdf).  The following models are provided:
+
+1. LD4L::WorksRDF::GenericWork - Reads triples into a graph without setting any properties.
+1. LD4L::WorksRDF::BibframeWork - Implements a work from the Bibframe ontology
+1. LD4L::WorksRDF::BibframeInstance - Implements an instance from the Bibframe ontology
+1. LD4L::WorksRDF::Bibframe* - Other supporting classes from Bibframe ontology
+1. LD4L::WorksRDF::BiboBook - Implements a BIBO Book
+1. LD4L::WorksRDF::BiboDocument - Implements a BIBO Document
+1. LD4L::WorksRDF::VivoBook - Implements VIVO extensions to BIBO Book
+1. LD4L::WorksRDF::Vivo* - Other supporting classes from the VIVO ontology
+1. LD4L::WorksRDF::SchemaBook - Implements a book from the schema ontology
+1. LD4L::WorksRDF::Schema* - Other supporting classes from the schema ontology
+1. LD4L::WorksRDF::OclcSchemaBook - Implements OCLC extensions to the schema Book
+
+### Ontologies
+
+The listed ontologies are used to represent the primary metadata about the annotations.
+Other ontologies may also be used that aren't listed.
+ 
+* [Bibframe](http://www.loc.gov/bibframe/)
+* [schema](schema.org)
+* [bibo](http://bibliontology.com/bibo/bibo.php#)
+* [RDF](http://www.w3.org/TR/rdf-syntax-grammar/)
+* [Dublin Core (DC)](http://dublincore.org/documents/dces/)
+* [Dublin Core Terms (DCTERMS)](http://dublincore.org/documents/dcmi-terms/)
+
+
+### Known Uses
+
+[LD4L Virtual Collection engine](https://github.com/ld4l/ld4l_virtual_collection)
 
 ## Contributing
 
