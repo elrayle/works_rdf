@@ -1,6 +1,7 @@
 require 'rdf'
 require 'active_triples'
 require 'active_triples/local_name'
+require 'active_triples/solrizer'
 require 'curb'
 require	'linkeddata'
 require 'ld4l/works_rdf/vocab/bibo'

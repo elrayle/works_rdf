@@ -31,7 +31,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency('pry')
   spec.add_development_dependency('pry-byebug')    # Works with ruby > 2
-  # spec.add_development_dependency('pry-debugger')  # Works with ruby < 2
   spec.add_development_dependency('rdoc')
   spec.add_development_dependency('rspec')
   spec.add_development_dependency('coveralls')
