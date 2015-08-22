@@ -1,4 +1,3 @@
-require 'pry'
 module LD4L
   module WorksRDF
     class WorkMetadata
@@ -24,7 +23,7 @@ module LD4L
       attr_accessor :error
       attr_accessor :error_message
 
-      def initialize( the_work )
+      def initialize( the_work=nil )
 
         # displayable:
         #    line 1     @titla  @pubdate (year only)
@@ -131,6 +130,10 @@ module LD4L
         @local_location   = attrs["local_location"]
         @local_callnumber = attrs["local_callnumber"]
         self
+      end
+
+      def set_type(format)       # TODO validate format, don't just use it
+        @work_type = format.upcase.to_sym
       end
 
       def set_type_to_book
