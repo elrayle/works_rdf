@@ -6,7 +6,8 @@ module LD4L
       @localname_prefix="p"
 
       configure :type => RDFVocabularies::BGN.Agent,
-                :base_uri => LD4L::WorksRDF.configuration.base_uri
+                :base_uri => LD4L::WorksRDF.configuration.base_uri,
+                :repository => :default
 
       property :publisher_name,   :predicate => RDF::SCHEMA.name
     end

@@ -6,7 +6,8 @@ module LD4L
       @localname_prefix="w"
 
       configure :type => RDFVocabularies::BF.Organization,
-                :base_uri => LD4L::WorksRDF.configuration.base_uri
+                :base_uri => LD4L::WorksRDF.configuration.base_uri,
+                :repository => :default
 
       property :label,  :predicate => RDFVocabularies::BF.label  # string
 

@@ -59,7 +59,7 @@ describe 'LD4L::WorksRDF::VivoBook' do
 
   describe 'type' do
     it "should be an RDFVocabularies::BIBO.Book" do
-      expect(subject.type.first.value).to eq RDFVocabularies::BIBO.Book.value
+      expect(subject.type.first.value).to eq RDFVocabularies::VIVO.Book.value
     end
   end
 
@@ -106,19 +106,33 @@ describe 'LD4L::WorksRDF::VivoBook' do
       context "and the item is not a blank node" do
 
         subject {LD4L::WorksRDF::VivoBook.new("123")}
+        let(:result) { subject.persist! }
 
         before do
           # Create inmemory repository
           @repo = RDF::Repository.new
-          allow(subject.class).to receive(:repository).and_return(nil)
-          allow(subject).to receive(:repository).and_return(@repo)
-          subject.persist!
+          ActiveTriples::Repositories.repositories[:default] = @repo
+          subject.place_of_publication = "NY"
+          result
+        end
+
+        it "should return true" do
+          expect(result).to eq true
         end
 
         it "should persist to the repository" do
           expect(@repo.statements.first).to eq subject.statements.first
         end
 
+        it "should delete from the repository" do
+          subject.reload
+          expect(subject.place_of_publication.first).to eq "NY"
+          subject.place_of_publication = []
+          expect(subject.place_of_publication).to eq []
+          subject.persist!
+          subject.reload
+          expect(@repo.statements.to_a.length).to eq 1 # Only the type statement
+        end
       end
     end
   end
@@ -143,7 +157,8 @@ describe 'LD4L::WorksRDF::VivoBook' do
 
   describe '#type' do
     it 'should return the type configured on the parent class' do
-      expect(subject.type).to eq [LD4L::WorksRDF::VivoBook.type]
+      expected_result = LD4L::WorksRDF::VivoBook.type.kind_of?(Array) ? LD4L::WorksRDF::VivoBook.type : [LD4L::WorksRDF::VivoBook.type]
+      expect(subject.type).to eq expected_result
     end
 
     it 'should set the type' do
@@ -174,17 +189,6 @@ describe 'LD4L::WorksRDF::VivoBook' do
       subject.class.configure :rdf_label => custom_label
       subject << RDF::Statement(subject.rdf_subject, custom_label, RDF::Literal('New Label'))
       expect(subject.rdf_label).to eq ['New Label']
-    end
-  end
-
-  describe '#solrize' do
-    it 'should return a label for bnodes' do
-      expect(subject.solrize).to eq subject.rdf_label
-    end
-
-    it 'should return a string of the resource uri' do
-      subject.set_subject! 'http://example.org/moomin'
-      expect(subject.solrize).to eq 'http://example.org/moomin'
     end
   end
 

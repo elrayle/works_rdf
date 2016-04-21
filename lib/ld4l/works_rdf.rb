@@ -9,6 +9,7 @@ require 'ld4l/works_rdf/vocab/vitro'
 require 'ld4l/works_rdf/vocab/library'
 require 'ld4l/works_rdf/vocab/bf'
 require 'ld4l/works_rdf/version'
+require 'ld4l/foaf_rdf'
 
 
 module LD4L

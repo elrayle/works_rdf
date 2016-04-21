@@ -6,7 +6,8 @@ module LD4L
       @localname_prefix="w"
 
       configure :type => RDFVocabularies::BF.Instance,
-                :base_uri => LD4L::WorksRDF.configuration.base_uri
+                :base_uri => LD4L::WorksRDF.configuration.base_uri,
+                :repository => :default
 
       property :instance_of,          :predicate => RDFVocabularies::BF.instanceOf,     :class_name => LD4L::WorksRDF::BibframeWork
       property :title,                :predicate => RDFVocabularies::BF.instanceTitle,  :class_name => LD4L::WorksRDF::BibframeTitle

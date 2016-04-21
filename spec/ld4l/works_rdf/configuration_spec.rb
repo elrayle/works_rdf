@@ -84,14 +84,6 @@ describe 'LD4L::WorksRDF' do
 
     describe "localname_minter" do
       context "when minter is nil" do
-        before do
-          class DummyWork < LD4L::WorksRDF::VivoBook
-            configure :type => RDFVocabularies::VIVO.Book, :base_uri => LD4L::WorksRDF.configuration.base_uri, :repository => :default
-          end
-        end
-        after do
-          Object.send(:remove_const, "DummyWork") if Object
-        end
         it "should use default minter in minter gem" do
           localname = ActiveTriples::LocalName::Minter.generate_local_name(
                   LD4L::WorksRDF::VivoBook, 10, {:prefix=>'default_'},
