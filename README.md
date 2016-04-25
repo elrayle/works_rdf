@@ -48,6 +48,11 @@ that the code will work in a usable way outside of its use in LD4L Use Cases.
 
 ### Examples
 
+*Common setup for all examples
+```
+require 'ld4l/works_rdf'
+```
+
 If the ontology is unknown, you can try all known methods by calling the generic metadata extraction service.
 ```
 item_metadata = LD4L::WorksRDF::AttemptGenericMetadataExtraction.call(uri)
@@ -55,7 +60,7 @@ item_metadata = LD4L::WorksRDF::AttemptGenericMetadataExtraction.call(uri)
 
 If the URI is known to return marcxml, use the following service.
 ```
-item_metadata = LD4L::WorksRDF::GetMetadataFromMarcxml.call(uri)
+item_metadata = LD4L::WorksRDF::GetMetadataFromMarcxmlURI.call(uri)
 ```
 
 If the URI is known to return schema.org ontology as interpreted by oclc, use the following service.
@@ -163,4 +168,3 @@ Other ontologies may also be used that aren't listed.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
-
