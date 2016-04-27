@@ -1,6 +1,7 @@
 require 'rdf'
 require 'active_triples'
 require 'active_triples/local_name'
+require 'active_triples/solrizer'
 require 'curb'
 require	'linkeddata'
 require 'ld4l/works_rdf/vocab/bibo'
@@ -9,6 +10,7 @@ require 'ld4l/works_rdf/vocab/vitro'
 require 'ld4l/works_rdf/vocab/library'
 require 'ld4l/works_rdf/vocab/bf'
 require 'ld4l/works_rdf/version'
+require 'ld4l/foaf_rdf'
 
 
 module LD4L
@@ -73,6 +75,7 @@ module LD4L
     autoload :GetMetadataFromVivoURI,      'ld4l/works_rdf/services/get_metadata_from_vivo_uri'
     autoload :GetMetadataFromOclcURI,      'ld4l/works_rdf/services/get_metadata_from_oclc_uri'
     autoload :AttemptGenericMetadataExtraction, 'ld4l/works_rdf/services/attempt_generic_metadata_extraction'
+    autoload :GetMetadataFromSolrQuery,    'ld4l/works_rdf/services/get_metadata_from_solr_query'
 
     autoload :GetModelFromURI,             'ld4l/works_rdf/services/get_model_from_uri'
 
@@ -85,6 +88,7 @@ module LD4L
     autoload :GetMetadataFromOclcModel,    'ld4l/works_rdf/services/metadata_services/get_metadata_from_oclc_model'
     autoload :GetMetadataFromVivoModel,    'ld4l/works_rdf/services/metadata_services/get_metadata_from_vivo_model'
     autoload :GetMetadataFromBiboModel,    'ld4l/works_rdf/services/metadata_services/get_metadata_from_bibo_model'
+    autoload :GetMetadataFromSolrDoc,      'ld4l/works_rdf/services/metadata_services/get_metadata_from_solr_doc'
     autoload :SetErrorInMetadata,          'ld4l/works_rdf/services/metadata_services/set_error_in_metadata'
 
     # autoload model service classes
@@ -97,6 +101,7 @@ module LD4L
     autoload :GetMarcxmlFromURI,           'ld4l/works_rdf/services/negotiation_services/get_marcxml_from_uri'
     autoload :GetTurtleFromURI,            'ld4l/works_rdf/services/negotiation_services/get_turtle_from_uri'
     autoload :GetRdfxmlFromURI,            'ld4l/works_rdf/services/negotiation_services/get_rdfxml_from_uri'
+    autoload :GetSolrResultsFromSolrQuery, 'ld4l/works_rdf/services/negotiation_services/get_solr_results_from_solr_query'
     autoload :ResponseHeader,              'ld4l/works_rdf/services/negotiation_services/response_header'
 
     # autoload repository service classes

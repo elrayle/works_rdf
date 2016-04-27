@@ -6,7 +6,8 @@ module LD4L
       @localname_prefix="p"
 
       configure :type => RDFVocabularies::BF.Provider,
-                :base_uri => LD4L::WorksRDF.configuration.base_uri
+                :base_uri => LD4L::WorksRDF.configuration.base_uri,
+                :repository => :default
 
       property :provider_date,  :predicate => RDFVocabularies::BF.providerDate    # string
       property :provider_name,  :predicate => RDFVocabularies::BF.providerName,  :class_name => LD4L::WorksRDF::BibframeOrganization    # string

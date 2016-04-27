@@ -1,5 +1,11 @@
 # LD4L::WorksRDF
 
+[![Build Status](https://travis-ci.org/ld4l/works_rdf.png?branch=master)](https://travis-ci.org/ld4l/works_rdf) 
+[![Coverage Status](https://coveralls.io/repos/ld4l/works_rdf/badge.png?branch=master)](https://coveralls.io/r/ld4l/works_rdf?branch=master)
+[![Gem Version](https://badge.fury.io/rb/ld4l-works_rdf.svg)](http://badge.fury.io/rb/ld4l-works_rdf)
+[![Dependency Status](https://www.versioneye.com/ruby/ld4l-works_rdf/0.0.4/badge.svg)](https://www.versioneye.com/ruby/ld4l-works_rdf/0.0.4)
+
+
 The primary purpose of this gem is the extraction of basic display metadata from rdf triples for use
 in a user interface.  It is assumed that if detailed metadata is required, the user will be redirected 
 back to the original source.
@@ -42,6 +48,11 @@ that the code will work in a usable way outside of its use in LD4L Use Cases.
 
 ### Examples
 
+*Common setup for all examples
+```
+require 'ld4l/works_rdf'
+```
+
 If the ontology is unknown, you can try all known methods by calling the generic metadata extraction service.
 ```
 item_metadata = LD4L::WorksRDF::AttemptGenericMetadataExtraction.call(uri)
@@ -49,7 +60,7 @@ item_metadata = LD4L::WorksRDF::AttemptGenericMetadataExtraction.call(uri)
 
 If the URI is known to return marcxml, use the following service.
 ```
-item_metadata = LD4L::WorksRDF::GetMetadataFromMarcxml.call(uri)
+item_metadata = LD4L::WorksRDF::GetMetadataFromMarcxmlURI.call(uri)
 ```
 
 If the URI is known to return schema.org ontology as interpreted by oclc, use the following service.

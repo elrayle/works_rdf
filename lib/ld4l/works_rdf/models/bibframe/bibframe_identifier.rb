@@ -6,7 +6,8 @@ module LD4L
       @localname_prefix="i"
 
       configure :type => RDFVocabularies::BF.Identifier,
-                :base_uri => LD4L::WorksRDF.configuration.base_uri
+                :base_uri => LD4L::WorksRDF.configuration.base_uri,
+                :repository => :default
 
       property :identifier_scheme,  :predicate => RDFVocabularies::BF.identifierScheme  # uri
       property :identifier_value,   :predicate => RDFVocabularies::BF.identifierValue   # string

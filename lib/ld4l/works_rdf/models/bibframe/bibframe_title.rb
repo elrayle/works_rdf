@@ -6,7 +6,8 @@ module LD4L
       @localname_prefix="t"
 
       configure :type => RDFVocabularies::BF.Title,
-                :base_uri => LD4L::WorksRDF.configuration.base_uri
+                :base_uri => LD4L::WorksRDF.configuration.base_uri,
+                :repository => :default
 
       property :title_value,  :predicate => RDFVocabularies::BF.titleValue  # string
       property :subtitle,     :predicate => RDFVocabularies::BF.subtitle    # string
